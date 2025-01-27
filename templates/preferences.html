@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/preferences.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center text-primary mb-4">User Preferences</h2>
+
+            <!-- Account Settings -->
+            <h3 class="mb-3 text-secondary">Account Settings</h3>
+            <form action="{% url 'account_settings' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" value="{{ user.username }}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="old_password" class="form-label">Old Password</label>
+                    <input type="password" id="old_password" name="old_password" class="form-control" placeholder="Enter old password">
+                </div>
+
+                <div class="mb-3">
+                    <label for="new_password" class="form-label">New Password</label>
+                    <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Enter new password">
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm new password">
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Update Account</button>
+            </form>
+
+            <!-- Notification Settings -->
+            <h3 class="mt-4 text-secondary">Notification Settings</h3>
+            <form action="{% url 'notification_settings' %}" method="post">
+                {% csrf_token %}
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="email_notifications" name="email_notifications" {% if preferences.email_notifications %}checked{% endif %}>
+                    <label class="form-check-label" for="email_notifications">Email Notifications</label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="push_notifications" name="push_notifications" {% if preferences.push_notifications %}checked{% endif %}>
+                    <label class="form-check-label" for="push_notifications">Push Notifications</label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="notification_frequency" class="form-label">Notification Frequency</label>
+                    <select id="notification_frequency" name="notification_frequency" class="form-select">
+                        <option value="daily" {% if preferences.notification_frequency == "daily" %}selected{% endif %}>Daily</option>
+                        <option value="weekly" {% if preferences.notification_frequency == "weekly" %}selected{% endif %}>Weekly</option>
+                        <option value="monthly" {% if preferences.notification_frequency == "monthly" %}selected{% endif %}>Monthly</option>
+                        <option value="never" {% if preferences.notification_frequency == "never" %}selected{% endif %}>Never</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Save Notifications</button>
+            </form>
+
+            <!-- Theme Settings -->
+            <h3 class="mt-4 text-secondary">Theme Settings</h3>
+            <form action="{% url 'theme_settings' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="theme_color" class="form-label">Theme Color</label>
+                    <select id="theme_color" name="theme_color" class="form-select">
+                        <option value="light" {% if preferences.theme_color == "light" %}selected{% endif %}>Light</option>
+                        <option value="dark" {% if preferences.theme_color == "dark" %}selected{% endif %}>Dark</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="font_style" class="form-label">Font Style</label>
+                    <select id="font_style" name="font_style" class="form-select">
+                        <option value="sans-serif" {% if preferences.font_style == "sans-serif" %}selected{% endif %}>Sans Serif</option>
+                        <option value="serif" {% if preferences.font_style == "serif" %}selected{% endif %}>Serif</option>
+                        <option value="monospace" {% if preferences.font_style == "monospace" %}selected{% endif %}>Monospace</option>
+                    </select>
+                </div>
+
+                <label for="layout_style" class="form-label">Layout Style</label>
+                <select id="layout_style" name="layout_style" class="form-select">
+                    <option value="grid" {% if preferences.layout_style == "grid" %}selected{% endif %}>Grid</option>
+                    <option value="list" {% if preferences.layout_style == "list" %}selected{% endif %}>List</option>
+                </select>
+
+                <div class="mb-3">
+                    <label for="font_size" class="form-label">Font Size</label>
+                    <select id="font_size" name="font_size" class="form-select">
+                        <option value="small" {% if preferences.font_size == "small" %}selected{% endif %}>Small</option>
+                        <option value="medium" {% if preferences.font_size == "medium" %}selected{% endif %}>Medium</option>
+                        <option value="large" {% if preferences.font_size == "large" %}selected{% endif %}>Large</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Save Theme</button>
+            </form>
+
+            <!-- Privacy Settings -->
+            <h3 class="mt-4 text-secondary">Privacy Settings</h3>
+            <form action="{% url 'privacy_settings' %}" method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="profile_visibility" class="form-label">Profile Visibility</label>
+                    <select id="profile_visibility" name="profile_visibility" class="form-select">
+                        <option value="public" {% if preferences.profile_visibility == "public" %}selected{% endif %}>Public</option>
+                        <option value="private" {% if preferences.profile_visibility == "private" %}selected{% endif %}>Private</option>
+                    </select>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="data_sharing" name="data_sharing" {% if preferences.data_sharing %}checked{% endif %}>
+                    <label class="form-check-label" for="data_sharing">Data Sharing</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Save Privacy</button>
+            </form>
+
+            <div class="mt-2">
+                <a href="{% url 'logout' %}" class="btn btn-danger w-100">Logout</a>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

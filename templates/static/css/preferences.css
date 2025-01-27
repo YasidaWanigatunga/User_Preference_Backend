@@ -1,0 +1,154 @@
+/* General Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Light and Dark Theme */
+body.bg-light {
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+body.bg-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Card Styling */
+.card {
+    max-width: 600px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode */
+.card.bg-light {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Dark Mode */
+.card.bg-dark {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+/* Heading Styles */
+h2 {
+    color: #4CAF50;
+    text-align: center;
+    font-weight: bold;
+}
+
+h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Form Styling */
+.form-check-label {
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode Form */
+.card.bg-light .form-control,
+.card.bg-light .form-select {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+/* Dark Mode Form */
+.card.bg-dark .form-control,
+.card.bg-dark .form-select {
+    background-color: #555;
+    color: #fff;
+    border: 1px solid #888;
+}
+
+/* Button Styling */
+button, .btn {
+    font-weight: bold;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button.btn-primary {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+}
+
+button.btn-primary:hover {
+    background-color: #45a049;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+}
+
+button.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card {
+        max-width: 90%;
+    }
+}
+
+/* Preferences Form Styling */
+.form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-check {
+    margin-bottom: 15px;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+/* Layout Styles */
+.layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.layout-list {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .layout-grid {
+        grid-template-columns: 1fr;
+    }
+}
